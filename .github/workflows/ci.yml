@@ -27,8 +27,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Run unit tests
+        run: pytest -q
+
       - name: Validate Docker build
-  run: |
-    VERSION=$(cat VERSION)
-    echo "Building version: $VERSION"
-    docker build -t student-ml-api:$VERSION .
+        run: |
+          VERSION=$(cat VERSION)
+          echo "Building version: $VERSION"
+          docker build -t student-ml-api:$VERSION .

@@ -6,7 +6,6 @@ sys.path.append(str(Path(__file__).resolve().parents[1]))
 from app import app
 
 
-
 def test_health():
     client = app.test_client()
 
@@ -17,7 +16,8 @@ def test_health():
     data = response.get_json()
     assert data["status"] == "healthy"
     assert data["application"] == "student-ml-api"
-    assert data["version"] == "1.0.0"
+    assert data["application_version"] == "1.1.0"
+    assert data["model_version"] == "model-1"
 
 
 def test_prediction_success():

@@ -47,6 +47,7 @@ jobs:
           docker build \
             -t ghcr.io/${{ github.repository_owner }}/student-ml-api:${{ steps.version.outputs.VERSION }} \
             -t ghcr.io/${{ github.repository_owner }}/student-ml-api:latest \
+            -t ghcr.io/${{ github.repository_owner }}/student-ml-api:${{ github.sha }} \
             .
 
       - name: Push versioned Docker image
@@ -56,3 +57,7 @@ jobs:
       - name: Push latest Docker image
         run: |
           docker push ghcr.io/${{ github.repository_owner }}/student-ml-api:latest
+
+      - name: Push commit SHA Docker image
+        run: |
+          docker push ghcr.io/${{ github.repository_owner }}/student-ml-api:${{ github.sha }}
